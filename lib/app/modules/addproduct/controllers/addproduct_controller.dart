@@ -65,12 +65,15 @@ class AddproductController extends GetxController {
     return null;
   }
   Future<void> addProductSql() async {
-
     final DatabaseHelper _dbHelper = DatabaseHelper();
-    await _dbHelper.addProduct(productName: productNameCtrl.text, price: priceCtrl.text,offerPrice: offerPriceCtrl.text,avlProductQty: availableQuantyCtrl.text,productDescription:productDescriptionCtrl.text);
-
-
-
-
+    await _dbHelper.addProduct(productName: productNameCtrl.text,
+        price: priceCtrl.text,
+        offerPrice: offerPriceCtrl.text,
+        avlProductQty: availableQuantyCtrl.text,
+        productDescription: productDescriptionCtrl.text);
   }
+
+
+
+
 }
