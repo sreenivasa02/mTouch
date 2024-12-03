@@ -39,7 +39,7 @@ class AddproductController extends GetxController {
 
   // Validator for email
   String? validatePrice(String value) {
-    if (!GetUtils.isEmail(value)) {
+    if (value.isEmpty) {
       return "Price Name can't be empty";
     }
     return null;
@@ -47,19 +47,19 @@ class AddproductController extends GetxController {
 
   // Validator for password
   String? validateOfferPrice(String value) {
-    if (!GetUtils.isEmail(value)) {
+    if (value.isEmpty) {
       return "Offer price Name can't be empty";
     }
     return null;
   }
   String? validateQuantity(String value) {
-    if (!GetUtils.isEmail(value)) {
+    if (value.isEmpty) {
       return "Quantity cant be empty";
     }
     return null;
   }
   String? validateProductDescription(String value) {
-    if (!GetUtils.isEmail(value)) {
+    if (value.isEmpty) {
       return "Description Can't be empty";
     }
     return null;
