@@ -37,6 +37,16 @@ class DatabaseHelper {
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
+  Future<Map<String, dynamic>?> getProductDetails(String productName) async {
+    final db = await database;
+    final List<Map<String, dynamic>> result = await db.query(
+      'product',
+      where: 'productName = ?',
+      whereArgs: [productName],
+    );
+
+    return result.isNotEmpty ? result.first : null; // Return the first match or null if no match
+  }
 
  /* Future<Map<String, dynamic>?> loginUser(String username, String password) async {
     final db = await database;
@@ -61,6 +71,15 @@ class DatabaseHelper {
       whereArgs: [productName],
     );
   }
+  Future<int> updateProductByName(String productName, Map<String, dynamic> updates) async {
+    final db = await database; // Assume this is your SQLite instance
 
+    return await db.update(
+      'product',
+      updates,
+      where: 'productName = ?',
+      whereArgs: [productName],
+    );
+  }
 
 }

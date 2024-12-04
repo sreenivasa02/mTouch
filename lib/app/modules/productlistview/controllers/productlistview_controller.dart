@@ -9,6 +9,7 @@ class ProductlistviewController extends GetxController {
   final count = 0.obs;
   final products = <Product>[].obs; // Observable list of products
   final dbHelper = DatabaseHelper();
+  var productList = <Product>[].obs;
   @override
   void onInit() {
     super.onInit();
