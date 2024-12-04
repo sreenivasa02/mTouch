@@ -7,11 +7,12 @@ import 'package:m_touch_app/app/modules/addproduct/views/addproduct_view.dart';
 import '../controllers/productlistview_controller.dart';
 
 class ProductlistviewView extends GetView<ProductlistviewController> {
-   ProductlistviewView({Key? key}) : super(key: key);
+  ProductlistviewView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    ProductlistviewController productlistviewController=Get.put(ProductlistviewController());
+    ProductlistviewController productlistviewController =
+        Get.put(ProductlistviewController());
     return Scaffold(
       appBar: AppBar(
         title: Text('Product List'),
@@ -26,29 +27,40 @@ class ProductlistviewView extends GetView<ProductlistviewController> {
             final product = controller.products[index];
             return Card(
               child: ListTile(
-                onTap: (){
-                  Get.to(AddproductView());
+                onTap: () {
+                  Get.to(AddproductView(),
+                      arguments: {"productName": product.productName});
+                  Get.put(AddproductController())
+                      .fetchProductByName(product.productName);
                 },
                 title: Text(product.productName ?? ''),
                 subtitle: Row(
                   children: [
                     Text('Price: ${product.price ?? 'N/A'}'),
-                    SizedBox(width: 20,),
+                    SizedBox(
+                      width: 20,
+                    ),
                     Text('Quantity: ${product.avlProductQty ?? 'N/A'}'),
-                    SizedBox(width: 20,),
+                    SizedBox(
+                      width: 20,
+                    ),
                     Text('Offer: ${product.offerPrice ?? 'N/A'}')
                   ],
                 ),
-                trailing:  IconButton(onPressed: (){
-                  productlistviewController.deleteProduct(product!.productName.toString());
-                }, icon: Icon(Icons.delete)),
+                trailing: IconButton(
+                    onPressed: () {
+                      productlistviewController
+                          .deleteProduct(product!.productName.toString());
+                    },
+                    icon: Icon(Icons.delete)),
               ),
             );
           },
         );
       }),
-      floatingActionButton: FloatingActionButton.extended(onPressed: ()=>Get.to(AddproductView()), label: Text("Add Product")),
-
+      floatingActionButton: FloatingActionButton.extended(
+          onPressed: () => Get.to(AddproductView()),
+          label: Text("Add Product")),
     );
   }
 }
